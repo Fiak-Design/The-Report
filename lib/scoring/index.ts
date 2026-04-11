@@ -536,3 +536,9 @@ export function scoreBgColor(score: number): string {
   if (score >= 40) return "rgba(251, 191, 36, 0.10)";
   return "rgba(255, 79, 79, 0.10)";
 }
+
+export function scoreBorderColor(score: number): string {
+  if (score >= 70) return "rgba(74, 222, 128, 0.3)";
+  if (score >= 40) return "rgba(251, 191, 36, 0.3)";
+  return "rgba(255, 79, 79, 0.3)";
+}

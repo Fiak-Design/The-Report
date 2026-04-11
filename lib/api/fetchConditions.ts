@@ -83,9 +83,9 @@ async function fetchWind(): Promise<WindResult> {
   const daily: DailyWind[] = [];
   let dayIndex = 0;
 
-  for (const [date, data] of dailyMap) {
-    const avgSpeed = data.speeds.length > 0 ? data.speeds.reduce((a, b) => a + b, 0) / data.speeds.length : 10;
-    const avgDir = data.dirs.length > 0 ? data.dirs.reduce((a, b) => a + b, 0) / data.dirs.length : 270;
+  for (const [date, data] of Array.from(dailyMap)) {
+    const avgSpeed = data.speeds.length > 0 ? data.speeds.reduce((a: number, b: number) => a + b, 0) / data.speeds.length : 10;
+    const avgDir = data.dirs.length > 0 ? data.dirs.reduce((a: number, b: number) => a + b, 0) / data.dirs.length : 270;
     const d = new Date(date + "T12:00:00");
     let label: string;
     if (date === todayStr) {
@@ -180,8 +180,8 @@ async function fetchWaveForecast(): Promise<DailyWave[]> {
 
   const result: DailyWave[] = [];
   let dayIndex = 0;
-  for (const [date, data] of dailyMap) {
-    const avg = (arr: number[]) => arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+  for (const [date, data] of Array.from(dailyMap)) {
+    const avg = (arr: number[]) => arr.length > 0 ? arr.reduce((a: number, b: number) => a + b, 0) / arr.length : 0;
     const d = new Date(date + "T12:00:00");
     let label: string;
     if (date === todayStr) label = "Today";

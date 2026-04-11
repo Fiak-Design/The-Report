@@ -149,7 +149,7 @@ function Divider() {
 
 // TideCurve and computeIdealTideWindow are imported from TideChart.tsx
 
-function _unused_interpolateTideHeight(timeMs: number, events: TideEvent[]): number {
+function interpolateTideHeight(timeMs: number, events: TideEvent[]): number {
   if (events.length === 0) return 3.0;
   if (events.length === 1) return events[0].heightFt;
 
@@ -307,9 +307,9 @@ function TideCurve({ events, tideWindow, currentHeight }: { events?: SerializedT
   // Green shaded area coordinates
   let greenX1: number | null = null;
   let greenX2: number | null = null;
-  if (idealWin) {
-    greenX1 = Math.max(0, timeToX(idealWin.startMs));
-    greenX2 = Math.min(width, timeToX(idealWin.endMs));
+  if (idealWin && idealWin.windows.length > 0) {
+    greenX1 = Math.max(0, timeToX(idealWin.windows[0].startMs));
+    greenX2 = Math.min(width, timeToX(idealWin.windows[0].endMs));
   }
 
   // Orange dot — current time position on curve
