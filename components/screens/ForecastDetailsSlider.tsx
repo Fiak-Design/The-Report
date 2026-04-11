@@ -225,6 +225,7 @@ export default function ForecastDetailsSlider({ forecastId, tideEvents, onClose 
           </div>
         </div>
       </div>
+      <div className="-translate-x-1/2 absolute bg-white bottom-[8.29px] h-[5px] left-1/2 rounded-[100px] w-[134px]" data-name="Home Indicator" />
     </div>
   );
 }

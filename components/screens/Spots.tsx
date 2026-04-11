@@ -332,7 +332,8 @@ export default function Spots({ spots, fetchedAt }: { spots: SpotData[]; fetched
         </div>
       </div>
 
-      <div className="hidden"><StatusBar /></div>
+      <StatusBar />
+      <div className="-translate-x-1/2 absolute bg-white bottom-[8px] h-[5px] left-1/2 rounded-[100px] w-[134px]" data-name="Home Indicator" />
       <div className="-translate-x-1/2 absolute bottom-[44.49px] content-stretch flex items-center justify-between left-1/2 px-[40px] py-[16px] rounded-[100px] w-[326px]" data-name="Nav 2" style={{ backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)", background: "rgba(255, 255, 255, 0.15)" }}>
         <div aria-hidden="true" className="absolute border border-[rgba(255,255,255,0.25)] border-solid inset-0 pointer-events-none rounded-[100px]" />
         <div className="absolute bg-[rgba(255,255,255,0.2)] bottom-[6.18px] left-[106.65px] rounded-[100px] top-[6.18px] w-[112.709px]" />
