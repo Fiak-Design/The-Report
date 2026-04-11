@@ -304,6 +304,7 @@ export default function Today({ topSpot, conditions }: TodayProps) {
 
   return (
     <div className="bg-[#050b19] overflow-clip relative rounded-[30px] size-full" data-name="Today">
+      <div className="hidden"><StatusBar /></div>
 
       {/* Frame48 */}
       <div className="-translate-x-1/2 absolute bottom-[24.46px] content-stretch flex flex-col gap-[8px] items-center left-1/2">
