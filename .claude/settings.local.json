@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(mv:*)",
+      "Bash(mkdir -p /tmp/the-report-figma)",
+      "Bash(unzip -o /Users/mikefiacco/Desktop/The_Report_Code.zip -d /tmp/the-report-figma)",
+      "Bash(curl -s http://localhost:3000)",
+      "WebFetch(domain:use.typekit.net)",
+      "Bash(node -e ':*)",
+      "Bash(grep -rn 'leading-\\\\[0\\\\].*score\\\\|leading-none.*score\\\\|top-\\\\[33\\\\|top-\\\\[32\\\\|top-\\\\[22' components/screens/*.tsx)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
