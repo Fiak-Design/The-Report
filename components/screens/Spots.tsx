@@ -320,7 +320,7 @@ export default function Spots({ spots, fetchedAt }: { spots: SpotData[]; fetched
   return (
     <div className="bg-[#050b19] overflow-clip relative rounded-[20px] size-full" data-name="Spots">
       {/* Card list */}
-      <div className="-translate-x-1/2 absolute bottom-0 content-stretch flex flex-col gap-[8px] h-[735px] items-start left-[calc(50%+0.5px)] overflow-x-clip overflow-y-auto w-[362px]">
+      <div className="-translate-x-1/2 absolute top-[118px] bottom-0 content-stretch flex flex-col gap-[8px] items-start left-[calc(50%+0.5px)] overflow-x-clip overflow-y-auto w-[362px]">
         {spots.map((spot) => (
           <SpotCard key={spot.id} spot={spot} />
         ))}
