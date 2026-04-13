@@ -169,6 +169,7 @@ export interface SpotData {
   id: string;
   name: string;
   score: number;
+  peakScore: number;
   tag: string | null;
   topPick: boolean;
   faceHeightFt: number;
@@ -327,10 +328,16 @@ export function computeAllSpots(conditions: LiveConditions): SpotData[] {
     const bestWindow = computeBestWindow(config.tideWindow, conditions.tide.events, conditions.tide.currentHeightFt);
     const forecast = buildForecast(config, conditions);
 
+    // Peak score = score assuming ideal tide (multiplier = 1.0), used to find best day pick
+    const peakScore = Math.round(
+      Math.min(100, result.sizeScore * 0.35 + result.swellScore * 0.43 + result.windScore * 0.22)
+    );
+
     return {
       id: config.id,
       name: config.name,
       score: result.score,
+      peakScore,
       tag: result.tag,
       topPick: false,
       faceHeightFt: result.faceHeightFt,
@@ -348,9 +355,15 @@ export function computeAllSpots(conditions: LiveConditions): SpotData[] {
 
   scored.sort((a, b) => b.score - a.score);
 
-  if (scored.length > 0) {
-    scored[0].topPick = true;
-  }
+  // Top pick = spot with highest peak score that has a valid ideal window today
+  const withWindow = scored.filter(
+    (s) => s.bestWindow !== "No ideal window today" && s.bestWindow !== "Any tide"
+  );
+  const topPickSpot = withWindow.length > 0
+    ? withWindow.reduce((best, s) => s.peakScore > best.peakScore ? s : best, withWindow[0])
+    : scored[0];
+
+  if (topPickSpot) topPickSpot.topPick = true;
 
   return scored;
 }

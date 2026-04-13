@@ -61,7 +61,7 @@ export default function AppShell({ spots, conditions, forecast }: { spots: SpotD
             }
           }}
         >
-          {baseView === "today" && <Today topSpot={spots[0]} conditions={conditions} />}
+          {baseView === "today" && <Today topSpot={spots.find(s => s.topPick) ?? spots[0]} conditions={conditions} />}
           {baseView === "spots" && <Spots spots={spots} fetchedAt={conditions.fetchedAt} />}
           {baseView === "forecast" && <Forecast forecast={forecast} fetchedAt={conditions.fetchedAt} />}
         </div>

@@ -407,7 +407,7 @@ export default function Today({ topSpot, conditions }: TodayProps) {
           {/* Frame20 - Ideal window */}
           <div className="content-stretch flex items-start justify-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 max-w-full overflow-hidden" style={{ backgroundColor: hasIdealWindow ? scoreBg(topSpot.score) : "rgba(255,79,79,0.1)" }}>
             <div className="font-['SF_Pro_Display:Bold',sans-serif] not-italic relative shrink-0 text-[10px] whitespace-nowrap overflow-hidden text-ellipsis" style={{ color: hasIdealWindow ? scoreColor(topSpot.score) : "#FF4F4F", lineHeight: "normal" }}>
-              {hasIdealWindow ? `✓ Ideal window: ${idealWindowLabel}` : "✕ No ideal window today"}
+              {hasIdealWindow ? `✓ Best today: ${idealWindowLabel}` : "✕ No ideal window today"}
             </div>
           </div>
         </div>
