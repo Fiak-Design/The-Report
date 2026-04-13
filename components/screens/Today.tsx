@@ -316,13 +316,13 @@ export default function Today({ topSpot, conditions }: TodayProps) {
         {/* Green card (Home Widgets - score card) */}
         <div
           className="content-stretch flex flex-col gap-[20px] items-start justify-center p-[20px] relative rounded-[30px] shrink-0 w-[366px]"
-          style={{ backgroundColor: scoreBg(topSpot.score) }}
+          style={{ backgroundColor: scoreBg(topSpot.peakScore) }}
           data-name="Home Widgets"
         >
           <div
             aria-hidden="true"
             className="absolute border border-solid inset-0 pointer-events-none rounded-[30px]"
-            style={{ borderColor: scoreBg(topSpot.score) }}
+            style={{ borderColor: scoreBg(topSpot.peakScore) }}
           />
 
           {/* Frame54 */}
@@ -339,9 +339,9 @@ export default function Today({ topSpot, conditions }: TodayProps) {
                   </div>
                 )}
                 {topSpot.topPick && (
-                  <div className="content-stretch flex items-center justify-center px-[6px] py-[4px] relative rounded-[4px] shrink-0" style={{ backgroundColor: scoreBg(topSpot.score) }} data-name="Tags">
-                    <div className="flex flex-col font-['SF_Pro_Display:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[10px] tracking-[0.8px] uppercase whitespace-nowrap" style={{ color: scoreColor(topSpot.score) }}>
-                      <p className="leading-none">Top Pick</p>
+                  <div className="content-stretch flex items-center justify-center px-[6px] py-[4px] relative rounded-[4px] shrink-0" style={{ backgroundColor: scoreBg(topSpot.peakScore) }} data-name="Tags">
+                    <div className="flex flex-col font-['SF_Pro_Display:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[10px] tracking-[0.8px] uppercase whitespace-nowrap" style={{ color: scoreColor(topSpot.peakScore) }}>
+                      <p className="leading-none">Today's Top Pick</p>
                     </div>
                   </div>
                 )}
@@ -371,7 +371,7 @@ export default function Today({ topSpot, conditions }: TodayProps) {
                 <ConditionBar label="Wind" value={topSpot.conditions.wind.value} />
                 <ConditionBar label="Tide" value={topSpot.conditions.tide.value} />
               </div>
-              <ScoreRing score={topSpot.score} />
+              <ScoreRing score={topSpot.peakScore} />
             </div>
           </div>
 
@@ -405,8 +405,8 @@ export default function Today({ topSpot, conditions }: TodayProps) {
           </div>
 
           {/* Frame20 - Ideal window */}
-          <div className="content-stretch flex items-start justify-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 max-w-full overflow-hidden" style={{ backgroundColor: hasIdealWindow ? scoreBg(topSpot.score) : "rgba(255,79,79,0.1)" }}>
-            <div className="font-['SF_Pro_Display:Bold',sans-serif] not-italic relative shrink-0 text-[10px] whitespace-nowrap overflow-hidden text-ellipsis" style={{ color: hasIdealWindow ? scoreColor(topSpot.score) : "#FF4F4F", lineHeight: "normal" }}>
+          <div className="content-stretch flex items-start justify-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 max-w-full overflow-hidden" style={{ backgroundColor: hasIdealWindow ? scoreBg(topSpot.peakScore) : "rgba(255,79,79,0.1)" }}>
+            <div className="font-['SF_Pro_Display:Bold',sans-serif] not-italic relative shrink-0 text-[10px] whitespace-nowrap overflow-hidden text-ellipsis" style={{ color: hasIdealWindow ? scoreColor(topSpot.peakScore) : "#FF4F4F", lineHeight: "normal" }}>
               {hasIdealWindow ? `✓ Best today: ${idealWindowLabel}` : "✕ No ideal window today"}
             </div>
           </div>
