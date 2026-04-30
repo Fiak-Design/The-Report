@@ -6,6 +6,7 @@ import { spotConfigs } from "@/lib/api/spotsData";
 import type { SpotData } from "@/lib/api/spotsData";
 import type { TideEvent } from "@/lib/scoring";
 import type { SerializedConditions } from "@/app/page";
+import { useNow } from "@/lib/hooks/useNow";
 
 interface TodayProps {
   topSpot: SpotData;
@@ -275,12 +276,17 @@ function freshnessColor(fetchedAt: string): string {
 }
 
 export default function Today({ topSpot, conditions }: TodayProps) {
+  // Tick every minute so the date header (and any "now"-derived UI in this tree)
+  // stays correct across midnight rollovers and time-zone differences between
+  // the SSR host and the user's device.
+  const now = useNow();
+
   const updatedTime = new Date(conditions.fetchedAt).toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
   });
   const dotColor = freshnessColor(conditions.fetchedAt);
-  const dateHeader = new Date().toLocaleDateString("en-US", {
+  const dateHeader = now.toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
@@ -310,7 +316,7 @@ export default function Today({ topSpot, conditions }: TodayProps) {
       {/* Frame48 */}
       <div className="-translate-x-1/2 absolute bottom-[24.46px] content-stretch flex flex-col gap-[8px] items-center left-1/2">
         <div className="flex flex-col font-['SF_Pro_Display:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[11px] text-[rgba(255,255,255,0.75)] tracking-[0.8px] uppercase whitespace-nowrap">
-          <p className="leading-[normal]">{dateHeader}</p>
+          <p className="leading-[normal]" suppressHydrationWarning>{dateHeader}</p>
         </div>
 
         {/* Green card (Home Widgets - score card) */}
