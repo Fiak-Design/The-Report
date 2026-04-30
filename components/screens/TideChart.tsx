@@ -3,7 +3,6 @@
 import { scoreTideMultiplier } from "@/lib/scoring";
 import type { TideEvent, TideWindowType } from "@/lib/scoring";
 import type { SerializedTideEvent } from "@/app/page";
-import { useNow } from "@/lib/hooks/useNow";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -97,12 +96,9 @@ interface TideChartProps {
 }
 
 export default function TideChart({ events, tideWindow }: TideChartProps) {
-  // Tick every 60s so the orange "now" dot tracks real time. The component will
-  // re-render and recompute nowMs / orangeDot on each tick.
-  const today = useNow();
-
   if (!events || events.length < 2) return <FallbackChart />;
 
+  const today = new Date();
   const startHour = 6;
   const endHour = 21;
   const width = 342;
@@ -179,7 +175,7 @@ export default function TideChart({ events, tideWindow }: TideChartProps) {
         <polyline points={points.join(" ")} stroke="#007FFF" strokeWidth="2" fill="none" />
       </svg>
       {orangeDot && (
-        <div suppressHydrationWarning style={{
+        <div style={{
           position: "absolute",
           width: 10,
           height: 10,
